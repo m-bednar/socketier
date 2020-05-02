@@ -1,0 +1,28 @@
+{
+  "name": "socketeer",
+  "version": "1.0.0",
+  "description": "Small wrapper around ws package for better work with websockets.",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-bednar/socketeer.git"
+  },
+  "keywords": [
+    "ws",
+    "websocket",
+    "socket.io"
+  ],
+  "author": "Martin Bednář",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-bednar/socketeer/issues"
+  },
+  "homepage": "https://github.com/m-bednar/socketeer#readme",
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "tslint-eslint-rules": "^5.4.0"
+  }
+}
