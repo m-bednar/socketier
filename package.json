@@ -2,9 +2,12 @@
   "name": "socketeer",
   "version": "1.0.0",
   "description": "Small wrapper around ws package for better work with websockets.",
-  "main": "main.ts",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./src/main.ts",
+    "clean": "del /s /q dist",
+    "compile": "tsc -p ./tsconfig.client.json & tsc -p ./tsconfig.server.json"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,11 @@
   "homepage": "https://github.com/m-bednar/socketeer#readme",
   "devDependencies": {
     "@types/node": "^13.13.4",
+    "@types/ws": "^7.2.4",
+    "gulp": "^4.0.2",
     "tslint-eslint-rules": "^5.4.0"
+  },
+  "dependencies": {
+    "ws": "^7.2.5"
   }
 }
