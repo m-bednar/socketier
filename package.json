@@ -4,10 +4,7 @@
   "description": "Small wrapper around ws package for better work with websockets.",
   "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node ./src/main.ts",
-    "clean": "del /s /q dist",
-    "compile": "tsc -p ./tsconfig.client.json & tsc -p ./tsconfig.server.json"
+    "start": "gulp --silent & ts-node ./src/main.ts"
   },
   "repository": {
     "type": "git",
@@ -28,9 +25,11 @@
     "@types/node": "^13.13.4",
     "@types/ws": "^7.2.4",
     "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
     "tslint-eslint-rules": "^5.4.0"
   },
   "dependencies": {
+    "gulp-live-server": "0.0.31",
     "ws": "^7.2.5"
   }
 }

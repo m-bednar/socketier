@@ -3,7 +3,7 @@
 export class SocketeerServer {
 
     constructor() {
-        console.log(Worker);
+        console.log('Hello, world!');
     }
 
 }
