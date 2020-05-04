@@ -2,6 +2,7 @@
     "compilerOptions": {
         "removeComments": true,                /* Do not emit comments to output. */
         "declaration": true,
+        "sourceMap": true,
 
         /* Strict Type-Checking Options */
         "strict": true,                        /* Enable all strict type-checking options. */

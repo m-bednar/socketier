@@ -12,7 +12,6 @@
         "no-magic-numbers": true,
         "typedef": [
             true,
-            "call-signature",
             "parameter",
             "property-declaration",
             "member-variable-declaration"
