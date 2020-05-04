@@ -1,15 +1,9 @@
 import { SocketeerServer } from './server';
 
-const server = new SocketeerServer({ port: 300 });
+const server = new SocketeerServer();
 
-server.subscribe('hello', (socket, data) => {
-    console.log(data);
-    socket.send('hello-world', data);
-});
-
-server.on('connected', (socket) => {
+server.on('connected', () => {
     console.log('Connected', server.clients().size);
-    socket.close();
 });
 
 server.on('disconnected', () => {

@@ -1,5 +1,6 @@
-import { CLOSE_CODE, PING_MSG, PONG_MSG } from './defs.js';
+import { CLOSE_CODE, DEFAULT_CLIENT_OPTS, PING_MSG, PONG_MSG } from './defs.js';
 import { EventType } from './types/EventType.js';
+import { IClientOpts } from './types/IClientOpts.js';
 import { IMessageListener } from './types/IMessageListener.js';
 
 export class SocketeerClient {
@@ -10,12 +11,14 @@ export class SocketeerClient {
     private eventHandle: EventTarget;
     private messageHandle: EventTarget;
 
-    private heartbeat?: number;
-    // private timeout?: number;
-    private pingTime: number = 5000;
+    private opts: IClientOpts;
 
-    constructor(url: string) {
+    private heartbeat?: number;
+    private ponged: boolean = true;
+
+    constructor(url: string, opts: IClientOpts = DEFAULT_CLIENT_OPTS) {
         this.url = url;
+        this.opts = opts;
         this.eventHandle = new EventTarget();
         this.messageHandle = new EventTarget();
     }
@@ -99,7 +102,7 @@ export class SocketeerClient {
             return;
         }
         if (data === PONG_MSG) {
-            // TODO:
+            this.ponged = true;
             return;
         }
         try {
@@ -118,6 +121,8 @@ export class SocketeerClient {
 
     private sendPing() {
         if (this.connection && !this.isDisposed()) {
+            this.ponged = false;
+            setTimeout(this.timeout.bind(this), this.opts.pongTimeout);
             this.connection.send(PING_MSG);
         }
     }
@@ -130,13 +135,19 @@ export class SocketeerClient {
 
     private startHeartbeat() {
         if (!this.heartbeat) {
-            this.heartbeat = <any> setInterval(this.sendPing.bind(this), this.pingTime);
+            this.heartbeat = <any> setInterval(this.sendPing.bind(this), this.opts.pingInterval);
         }
     }
 
     private stopHeartbeat() {
         if (this.heartbeat) {
             clearInterval(this.heartbeat);
+        }
+    }
+
+    private timeout() {
+        if (!this.ponged) {
+            this.close();
         }
     }
 
