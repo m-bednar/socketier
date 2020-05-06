@@ -9,6 +9,9 @@ import { IMessageHandler } from './types/IMessageHandler';
 import { IServerOptions } from './types/IServerOptions';
 import { ServerEventType } from './types/ServerEventType';
 
+/**
+ * Server API class.
+ */
 export class SocketeerServer {
 
     private server!: Server;

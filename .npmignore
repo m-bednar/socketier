@@ -1,0 +1,12 @@
+src
+docs
+
+.editorconfig
+.gitignore
+
+gulpfile.js
+tslint.json
+tsconfig.json
+tsconfig.client.json
+tsconfig.server.json
+typedoc.json

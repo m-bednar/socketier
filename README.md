@@ -3,7 +3,7 @@
 
 Small, but useful wrapper around [ws package](https://www.npmjs.com/package/ws). API similar to Socket.io, but without performance issues and long-polling.
 
-Full **Socketeer documentation** can be found [here](https://m-bednar.github.io/socketeer/).
+Full **documentation** can be found [here](https://m-bednar.github.io/socketeer/).
 
 
 ## Server usage
@@ -17,6 +17,7 @@ server.on('listening', () => console.log('Server listening'));
 
 server.subscribe<string>('hello-world' (socket, data) => {
     console.log(`Socket data recieved: ${data}`);
+    // Process data...
 });
 
 server.listen();   // DO NOT FORGET THIS LINE!!!
@@ -34,18 +35,19 @@ const client = new SocketeerClient('ws://localhost:300');
 
 client.on('connected', () => {
     console.log('Connection estabilished');
+    // Send 'Hello world!' to the server
     client.send('hello-world', 'Hello world!');
 });
 
 client.connect();   // DO NOT FORGET THIS LINE!!!
 ```
 
+
 You can also **use client on server-side** to connect server/node.js app to another Socketeer server.
 
 ```typescript
 import { SocketeerServer } from 'socketeer';
 import { SocketeerClient } from 'socketeer/client';
-
 
 const server = new SocketeerServer();
 const client = new SocketeerClient('ws://another-socketeer.com');

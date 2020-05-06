@@ -3,6 +3,9 @@ import { ClientEventType } from './types/ClientEventType.js';
 import { IClientOpts } from './types/IClientOpts.js';
 import { IMessageListener } from './types/IMessageListener.js';
 
+/**
+ * Class providing client-side API.
+ */
 export class SocketeerClient {
 
     private url: string;

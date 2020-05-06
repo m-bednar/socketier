@@ -1,9 +1,10 @@
 {
   "name": "socketeer",
   "version": "1.0.0",
-  "description": "Small wrapper around ws package for better work with websockets.",
+  "description": "Small wrapper around ws package for convenient work with websockets.",
   "main": "dist/server/index.js",
   "scripts": {
+    "prepublish": "gulp compile",
     "start": "gulp run --silent",
     "docs": "typedoc --options"
   },
@@ -13,6 +14,8 @@
   },
   "keywords": [
     "ws",
+    "client",
+    "server",
     "websocket",
     "socket.io"
   ],
