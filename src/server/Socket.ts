@@ -27,9 +27,10 @@ export class Socket {
      * @param data Data to be send.
      */
     public broadcast<T>(type: string, data?: T) {
+        const msg = JSON.stringify({ type, data });
         this.server.clients.forEach((socket) => {
             if (socket !== this.socket) {
-                socket.send(JSON.stringify({ type, data }));
+                socket.send(msg);
             }
         });
     }

@@ -2,9 +2,10 @@
   "name": "socketeer",
   "version": "1.0.0",
   "description": "Small wrapper around ws package for better work with websockets.",
-  "main": "dist/server/main.js",
+  "main": "dist/server/index.js",
   "scripts": {
-    "start": "gulp run --silent"
+    "start": "gulp run --silent",
+    "docs": "typedoc --options"
   },
   "repository": {
     "type": "git",
@@ -26,12 +27,12 @@
     "@types/ws": "^7.2.4",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
+    "gulp-live-server": "0.0.31",
+    "gulp-nodemon": "^2.5.0",
     "gulp-watch": "^5.0.1",
     "tslint-eslint-rules": "^5.4.0"
   },
   "dependencies": {
-    "gulp-live-server": "0.0.31",
-    "gulp-nodemon": "^2.5.0",
     "ws": "^7.2.5"
   }
 }

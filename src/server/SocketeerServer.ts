@@ -1,43 +1,89 @@
 import { EventEmitter } from 'events';
 import { clearTimeout, setTimeout } from 'timers';
 import ws, { Data, Server } from 'ws';
-import { EventType } from '../client/types/EventType';
 import { DEFAULT_WSS_OPTS, PING_MSG, PONG_MSG } from './defs';
 import { Socket } from './Socket';
 import { IEventHandler } from './types/IEventHandler';
 import { IMessage } from './types/IMessage';
 import { IMessageHandler } from './types/IMessageHandler';
 import { IServerOptions } from './types/IServerOptions';
+import { ServerEventType } from './types/ServerEventType';
 
 export class SocketeerServer {
 
-    private server: Server;
+    private server!: Server;
     private eventHandle: EventEmitter = new EventEmitter();
     private messageHandle: EventEmitter = new EventEmitter();
 
     private options: IServerOptions;
     private heartbeats: Map<ws, NodeJS.Timeout> = new Map<ws, NodeJS.Timeout>();
 
+    /**
+     * Creates new SocketeerServer instance.
+     * @param opts Server options.
+     */
     constructor(opts: IServerOptions = DEFAULT_WSS_OPTS) {
         this.options = opts;
-        this.server = new Server({ ...DEFAULT_WSS_OPTS, ...opts });
+    }
+
+    /**
+     * Server begins to listen to new connections and messages.
+     */
+    public listen() {
+        this.server = new Server({ ...DEFAULT_WSS_OPTS, ...this.options });
+        this.server.on('error', this.onError.bind(this));
         this.server.on('listening', this.onListening.bind(this));
         this.server.on('connection', this.onConnection.bind(this));
     }
 
-    public on(type: EventType, handler: IEventHandler) {
+    /**
+     * Closes server and all connections.
+     */
+    public close() {
+        this.server.close();
+    }
+
+    /**
+     * Add listener to an certain event.
+     * @param type Type of event to listen to.
+     * @param handler Event handler.
+     */
+    public on(type: ServerEventType, handler: IEventHandler) {
         this.eventHandle.addListener(type, handler);
     }
 
+    /**
+     * Subscribes to a certain type of message.
+     * @param type Type of message to subscribe to.
+     * @param handler Message handler.
+     */
     public subscribe<T>(type: string, handler: IMessageHandler<T>) {
         this.messageHandle.addListener(type, handler);
     }
 
+    /**
+     * Sends message to all connected sockets.
+     * @param type Type of message.
+     * @param data Data to be sent.
+     */
+    public broadcast<T>(type: string, data?: T) {
+        const msg = JSON.stringify({ type, data });
+        this.server.clients.forEach((socket) => {
+            socket.send(msg);
+        });
+    }
+
+    /**
+     * Returns all connected clients.
+     */
     public clients(): ReadonlySet<ws> {
         return this.server.clients;
     }
 
     /* --- Event handlers --- */
+    private onError() {
+        this.eventHandle.emit('error');
+    }
 
     private onListening() {
         this.eventHandle.emit('listening');

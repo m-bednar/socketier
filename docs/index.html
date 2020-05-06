@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Socketeer</title>
+	<meta name="description" content="Documentation for Socketeer">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Socketeer</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>Socketeer</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#socketeer" id="socketeer" style="color: inherit; text-decoration: none;">
+					<h1>Socketeer</h1>
+				</a>
+				<p>Small, but useful wrapper around <a href="https://www.npmjs.com/package/ws">ws package</a>. API similar to Socket.io, but without performance issues and long-polling.</p>
+				<a href="#server-usage" id="server-usage" style="color: inherit; text-decoration: none;">
+					<h2>Server usage</h2>
+				</a>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { SocketeerServer } <span class="hljs-keyword">from</span> <span class="hljs-string">'socketeer'</span>;
+
+<span class="hljs-keyword">let</span> server = <span class="hljs-keyword">new</span> SocketeerServer();
+
+server.on(<span class="hljs-string">'listening'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Server listening'</span>));
+
+server.subscribe&lt;<span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">'hello-world' (<span class="hljs-params">socket, data</span>) =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-params">`Socket data recieved: ${data}`</span>);
+}</span>);
+
+<span class="hljs-params">server</span>.<span class="hljs-params">listen</span><span class="hljs-params">()</span>;   // <span class="hljs-params">DO</span> <span class="hljs-params">NOT</span> <span class="hljs-params">FORGET</span> <span class="hljs-params">THIS</span> <span class="hljs-params">LINE</span>!!!</span></code></pre>
+				<a href="#client-usage" id="client-usage" style="color: inherit; text-decoration: none;">
+					<h2>Client usage</h2>
+				</a>
+				<p>For more convenient usage please use along with some bundling tool.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { SocketeerClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'node_modules/socketeer/client'</span>;
+
+<span class="hljs-keyword">let</span> client = <span class="hljs-keyword">new</span> SocketeerClient(<span class="hljs-string">'ws://localhost:300'</span>);
+
+client.on(<span class="hljs-string">'connected'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Connection estabilished'</span>);
+    client.send(<span class="hljs-string">'hello-world'</span>, <span class="hljs-string">'Hello world!'</span>);
+});
+
+client.connect();   <span class="hljs-comment">// DO NOT FORGET THIS LINE!!!</span></code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/socket.html" class="tsd-kind-icon">Socket</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/socketeerclient.html" class="tsd-kind-icon">Socketeer<wbr>Client</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/socketeerserver.html" class="tsd-kind-icon">Socketeer<wbr>Server</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iclientopts.html" class="tsd-kind-icon">IClient<wbr>Opts</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/ieventhandler.html" class="tsd-kind-icon">IEvent<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/imessage.html" class="tsd-kind-icon">IMessage</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/imessagehandler.html" class="tsd-kind-icon">IMessage<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/imessagelistener.html" class="tsd-kind-icon">IMessage<wbr>Listener</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iserveroptions.html" class="tsd-kind-icon">IServer<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#clienteventtype" class="tsd-kind-icon">Client<wbr>Event<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#servereventtype" class="tsd-kind-icon">Server<wbr>Event<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#close_code" class="tsd-kind-icon">CLOSE_<wbr>CODE</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#default_client_opts" class="tsd-kind-icon">DEFAULT_<wbr>CLIENT_<wbr>OPTS</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#default_wss_opts" class="tsd-kind-icon">DEFAULT_<wbr>WSS_<wbr>OPTS</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

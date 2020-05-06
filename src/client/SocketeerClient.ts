@@ -1,5 +1,5 @@
 import { CLOSE_CODE, DEFAULT_CLIENT_OPTS, PING_MSG, PONG_MSG } from './defs.js';
-import { EventType } from './types/EventType.js';
+import { ClientEventType } from './types/ClientEventType.js';
 import { IClientOpts } from './types/IClientOpts.js';
 import { IMessageListener } from './types/IMessageListener.js';
 
@@ -16,6 +16,11 @@ export class SocketeerClient {
     private heartbeat?: number;
     private ponged: boolean = true;
 
+    /**
+     * Creates new client connection instance.
+     * @param url URL to connect to.
+     * @param opts Client connection options.
+     */
     constructor(url: string, opts: IClientOpts = DEFAULT_CLIENT_OPTS) {
         this.url = url;
         this.opts = opts;
@@ -23,6 +28,9 @@ export class SocketeerClient {
         this.messageHandle = new EventTarget();
     }
 
+    /**
+     * Connects client to a server.
+     */
     public connect() {
         if (this.connection) {
             throw Error(`Connection already estabilished.`);
@@ -31,10 +39,20 @@ export class SocketeerClient {
         this.addListeners();
     }
 
-    public on(type: EventType, listener: EventListener) {
+    /**
+     * Add listener for a specific event.
+     * @param type Event to listen to.
+     * @param listener Listener to be called, when event occurs.
+     */
+    public on(type: ClientEventType, listener: EventListener) {
         this.eventHandle.addEventListener(type, listener);
     }
 
+    /**
+     * Sends a message to the server.
+     * @param type Type of message to be sent.
+     * @param data Data to be sent.
+     */
     public send<T>(type: string, data: T) {
         if (!this.connection || this.isDisposed()) {
             throw Error(`Cannot send data when connection is not estabilished.`);
@@ -43,12 +61,20 @@ export class SocketeerClient {
         this.connection.send(msg);
     }
 
+    /**
+     * Subscribes to a certain type of message.
+     * @param type Type of message to subscribe to.
+     * @param listener Message listener.
+     */
     public subscribe<T>(type: string, listener: IMessageListener<T>) {
         this.messageHandle.addEventListener(type, (event: Event) => {
             listener((<any> event).data);
         });
     }
 
+    /**
+     * Closes the underlying connection.
+     */
     public close() {
         this.stopHeartbeat();
         this.removeListeners();
@@ -115,7 +141,7 @@ export class SocketeerClient {
         }
     }
 
-    private dispatchEvent(type: EventType) {
+    private dispatchEvent(type: ClientEventType) {
         this.eventHandle.dispatchEvent(new Event(type));
     }
 

@@ -6,7 +6,7 @@ const gulpServer = require('gulp-live-server');
 const gulpClean = require('gulp-clean');
 
 const DEST_DIR = './dist';
-const MAIN_SCRIPT = './src/server/main.ts';
+const MAIN_SCRIPT = './src/server/index.ts';
 const TS_CONF_CLIENT = 'tsconfig.client.json';
 const TS_CONF_SERVER = 'tsconfig.server.json';
 

@@ -1,0 +1,15 @@
+{
+    "name": "Socketeer",
+    "mode": "file",
+    "inputFiles": [ "./src/**/*" ],
+    "exclude": [
+        "./src/server/index.ts",
+        "./src/client/index.ts"
+    ],
+    "out": "docs",
+    "stripInternal": true,
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "disableSources": true
+}
