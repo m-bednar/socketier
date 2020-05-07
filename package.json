@@ -1,6 +1,6 @@
 {
   "name": "socketier",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Small wrapper around ws package for convenient work with websockets.",
   "main": "dist/server/index.js",
   "scripts": {
