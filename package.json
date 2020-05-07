@@ -1,12 +1,12 @@
 {
   "name": "socketier",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Small wrapper around ws package for convenient work with websockets.",
   "main": "dist/server/index.js",
   "scripts": {
-    "prepublish": "gulp compile",
+    "prepublish": "gulp compile && npm run docs",
     "start": "gulp run --silent",
-    "docs": "typedoc --options"
+    "docs": "typedoc --options && type nul > docs/.nojekyll"
   },
   "repository": {
     "type": "git",

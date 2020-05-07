@@ -1,6 +1,6 @@
 
-<p align="center">
- <img src="./socketier.png">
+<p align="center" style="padding: 20px 0;">
+    <img src="./socketier.png">
 </p>
 
 # Socketier
