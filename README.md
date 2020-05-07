@@ -1,4 +1,8 @@
 
+<p align="center">
+ <img src="socketier.png">
+</p>
+
 # Socketier
 
 Small, but useful wrapper around [ws package](https://www.npmjs.com/package/ws). API similar to Socket.io, but without performance issues and long-polling.
