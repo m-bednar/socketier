@@ -1,4 +1,4 @@
-export { SocketeerServer } from './SocketeerServer';
+export { SocketierServer } from './SocketierServer';
 export { Socket } from './Socket';
 export { ServerEventType } from './types/ServerEventType';
 export { IEventHandler } from './types/IEventHandler';

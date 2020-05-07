@@ -6,7 +6,7 @@ import { IMessageListener } from './types/IMessageListener.js';
 /**
  * Class providing client-side API.
  */
-export class SocketeerClient {
+export class SocketierClient {
 
     private url: string;
     private connection?: WebSocket;

@@ -1,5 +1,5 @@
 {
-  "name": "socketeer",
+  "name": "socketier",
   "version": "1.0.0",
   "description": "Small wrapper around ws package for convenient work with websockets.",
   "main": "dist/server/index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m-bednar/socketeer.git"
+    "url": "git+https://github.com/m-bednar/socketier.git"
   },
   "keywords": [
     "ws",
@@ -22,9 +22,9 @@
   "author": "Martin Bednář",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/m-bednar/socketeer/issues"
+    "url": "https://github.com/m-bednar/socketier/issues"
   },
-  "homepage": "https://github.com/m-bednar/socketeer#readme",
+  "homepage": "https://github.com/m-bednar/socketier#readme",
   "devDependencies": {
     "@types/node": "^13.13.4",
     "@types/ws": "^7.2.4",

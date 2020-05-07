@@ -1,5 +1,5 @@
 {
-    "name": "Socketeer",
+    "name": "Socketier",
     "mode": "file",
     "inputFiles": [ "./src/**/*" ],
     "exclude": [

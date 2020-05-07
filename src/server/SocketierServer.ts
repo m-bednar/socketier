@@ -12,7 +12,7 @@ import { ServerEventType } from './types/ServerEventType';
 /**
  * Server API class.
  */
-export class SocketeerServer {
+export class SocketierServer {
 
     private server!: Server;
     private eventHandle: EventEmitter = new EventEmitter();
@@ -22,7 +22,7 @@ export class SocketeerServer {
     private heartbeats: Map<ws, NodeJS.Timeout> = new Map<ws, NodeJS.Timeout>();
 
     /**
-     * Creates new SocketeerServer instance.
+     * Creates new SocketierServer instance.
      * @param opts Server options.
      */
     constructor(opts: IServerOptions = DEFAULT_WSS_OPTS) {
