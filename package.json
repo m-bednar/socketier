@@ -1,6 +1,6 @@
 {
   "name": "socketier",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "Small wrapper around ws package for convenient work with websockets.",
   "main": "dist/server/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/m-bednar/socketier/issues"
   },
-  "homepage": "https://github.com/m-bednar/socketier#readme",
+  "homepage": "https://m-bednar.github.io/socketier",
   "devDependencies": {
     "@types/node": "^13.13.4",
     "@types/ws": "^7.2.4",

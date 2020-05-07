@@ -1,6 +1,6 @@
 
 <p align="center" style="padding: 20px 0;">
-    <img src="./socketier.png">
+    <img src="https://github.com/m-bednar/socketier/blob/master/socketier.png?raw=true">
 </p>
 
 # Socketier
@@ -19,7 +19,7 @@ const server = new SocketierServer();
 
 server.on('listening', () => console.log('Server listening'));
 
-server.subscribe<string>('hello-world' (socket, data) => {
+server.subscribe<string>('hello-world', (socket, data) => {
     console.log(`Socket data recieved: ${data}`);
     // Process data...
 });
@@ -33,7 +33,7 @@ server.listen();   // DO NOT FORGET THIS LINE!!!
 For more convenient usage please use along with some bundling tool.
 
 ```typescript
-import { SocketierClient } from 'node_modules/socketier/client';
+import { SocketierClient } from 'socketier/dist/client';
 
 const client = new SocketierClient('ws://localhost:300');
 
@@ -51,7 +51,7 @@ You can also **use client on server-side** to connect server/node.js app to anot
 
 ```typescript
 import { SocketierServer } from 'socketier';
-import { SocketierClient } from 'socketier/client';
+import { SocketierClient } from 'socketier/dist/client';
 
 const server = new SocketierServer();
 const client = new SocketierClient('ws://another-socketier.com');
@@ -61,7 +61,7 @@ server.on('listening', () => {
     client.connect();
 });
 
-server.subscribe<string>('hello-world' (socket, data) => {
+server.subscribe<string>('hello-world', (socket, data) => {
     // Resend data to another server
     client.send('hello-world', data);
 });

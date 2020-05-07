@@ -63,7 +63,7 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<p align="center" style="padding: 20px 0;">
-					<img src="./socketier.png">
+					<img src="https://github.com/m-bednar/socketier/blob/master/socketier.png?raw=true">
 				</p>
 				<a href="#socketier" id="socketier" style="color: inherit; text-decoration: none;">
 					<h1>Socketier</h1>
@@ -79,7 +79,7 @@
 
 server.on(<span class="hljs-string">'listening'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Server listening'</span>));
 
-server.subscribe&lt;<span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">'hello-world' (<span class="hljs-params">socket, data</span>) =&gt; {
+server.subscribe&lt;<span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">'hello-world', (<span class="hljs-params">socket, data</span>) =&gt; {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-params">`Socket data recieved: ${data}`</span>);
     <span class="hljs-comment">// Process data...</span>
 }</span>);
@@ -89,7 +89,7 @@ server.subscribe&lt;<span class="hljs-built_in">string</span>&gt;<span class="hl
 					<h2>Client usage</h2>
 				</a>
 				<p>For more convenient usage please use along with some bundling tool.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { SocketierClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'node_modules/socketier/client'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { SocketierClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'socketier/dist/client'</span>;
 
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> SocketierClient(<span class="hljs-string">'ws://localhost:300'</span>);
 
@@ -102,7 +102,7 @@ client.on(<span class="hljs-string">'connected'</span>, <span class="hljs-functi
 client.connect();   <span class="hljs-comment">// DO NOT FORGET THIS LINE!!!</span></code></pre>
 				<p>You can also <strong>use client on server-side</strong> to connect server/node.js app to another Socketier server.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { SocketierServer } <span class="hljs-keyword">from</span> <span class="hljs-string">'socketier'</span>;
-<span class="hljs-keyword">import</span> { SocketierClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'socketier/client'</span>;
+<span class="hljs-keyword">import</span> { SocketierClient } <span class="hljs-keyword">from</span> <span class="hljs-string">'socketier/dist/client'</span>;
 
 <span class="hljs-keyword">const</span> server = <span class="hljs-keyword">new</span> SocketierServer();
 <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> SocketierClient(<span class="hljs-string">'ws://another-socketier.com'</span>);
@@ -112,7 +112,7 @@ server.on(<span class="hljs-string">'listening'</span>, <span class="hljs-functi
     client.connect();
 });
 
-server.subscribe&lt;<span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">'hello-world' (<span class="hljs-params">socket, data</span>) =&gt; {
+server.subscribe&lt;<span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">'hello-world', (<span class="hljs-params">socket, data</span>) =&gt; {
     <span class="hljs-comment">// Resend data to another server</span>
     client.send(<span class="hljs-params">'hello-world', data</span>);
 }</span>);
